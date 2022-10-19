@@ -14,29 +14,42 @@ import java.util.List;
 public class VendasApplication {
 
     @Bean
-    public CommandLineRunner init(@Autowired Clientes clientes){
+    public CommandLineRunner init(@Autowired Clientes clientes) {
         return args -> {
             System.out.println("Salvando  clientes");
             clientes.salvar(new Cliente("Mateus"));
             clientes.salvar(new Cliente("Felipe"));
 
 
-            List<Cliente> todosClientes=  clientes.obterTodos();
+            List<Cliente> todosClientes = clientes.obterTodos();
             todosClientes.forEach(System.out::println);
 
             System.out.println("Atualizando  clientes");
-            todosClientes.forEach(c-> {
-                c.setNome(c.getNome()+"atualizado");
+            todosClientes.forEach(c -> {
+                c.setNome(c.getNome() + " atualizado");
                 clientes.atualizar(c);
 
             });
 
+            todosClientes = clientes.obterTodos();
+            todosClientes.forEach(System.out::println);
+
             System.out.println("buscando cliente");
-            clientes.buscarPorNome("mat").forEach(System.out::println);
+            clientes.buscarPorNome("Mat").forEach(System.out::println);
 
-            //       todosClientes=  clientes.obterTodos();
-            //   todosClientes.forEach(System.out::println);
 
+//            System.out.println("Deletando Clientes");
+//            clientes.obterTodos().forEach(c -> {
+//                clientes.deletar(c);
+//            });
+
+            System.out.println("Todos Clientes");
+            todosClientes = clientes.obterTodos();
+            if (todosClientes.isEmpty()) {
+                System.out.println("nenhum cliente encontrado");
+            } else {
+                todosClientes.forEach(System.out::println);
+            }
             ;
         };
     }
