@@ -12,12 +12,12 @@ import java.util.List;
 
 @Repository
 public class Clientes {
-    private static String INSERT = "insert into cliente (nome) values (?)";
-    private static String SELECT_ALL = "select * from cliente";
-    private static String UPDATE = " update cliente set nome = ? where id = ?";
+    private static String INSERT = "insert into cliente (nome) values (?)   ";
+    private static String SELECT_ALL = "select * from cliente ";
+    private static String UPDATE = " update cliente set nome = ? where id = ? ";
     private static String DELETE = "delete from cliente where id = ?";
 
-    private static  String SELECT_NOME = "select * from cliente where nome like ?";
+    private static  String SELECT_NOME = "select * from cliente where nome like ? ";
 
 
     //o jdbc template permite alguma alterações na base de dados
@@ -45,9 +45,8 @@ public class Clientes {
     }
 
     public List<Cliente> buscarPorNome(String nome){
-        System.out.println("passou aqui");
-        return  jdbcTemplate.query(SELECT_NOME,
-           //     SELECT_ALL.concat( " where nome like ? "),
+        return  jdbcTemplate.query(
+                 SELECT_ALL.concat( " where nome like ? "),
                 new Object[]{"%" + nome + "%"},
                 obterClienteMapper());
 
@@ -60,7 +59,6 @@ public class Clientes {
     }
 
     private  RowMapper<Cliente> obterClienteMapper() {
-        System.out.println("passou aqui 2");
         return new RowMapper<Cliente>() {
             @Override
             public Cliente mapRow(ResultSet resultSet, int i) throws SQLException {
