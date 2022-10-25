@@ -1,4 +1,4 @@
-package domain.entity;
+package com.projeto.vendas.domain.repositorio.entity;
 
 public class ItemPedido {
     private Integer id;

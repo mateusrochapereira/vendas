@@ -1,4 +1,4 @@
-package domain.entity;
+package com.projeto.vendas.domain.repositorio.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
