@@ -10,7 +10,9 @@ import java.util.List;
 
 
 public interface ClientesRepository extends JpaRepository<Cliente, Integer> {
+    //like tem a msm função q no sql, de buscar algo que contenha o pedaço da string
+   // List<Cliente> findByNomeLike(String nome);
+   boolean existByNome(String nome);
 
 
-    List<Cliente> findByNomeLike(String nome);
 }
