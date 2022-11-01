@@ -1,4 +1,4 @@
-package com.projeto.vendas.domain.repositorio.entity;
+package com.projeto.vendas.domain.entity;
 
 
 import javax.persistence.*;
