@@ -6,6 +6,9 @@ package com.projeto.vendas;
 
 
 
+
+
+
 import com.projeto.vendas.domain.entity.Cliente;
 import com.projeto.vendas.domain.repository.ClientesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
 
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class VendasApplication {
             clientesRepository.save(new Cliente("Felipe"));
 
 
-            boolean existe = clientesRepository.existByNome("Mateus");
+            boolean existe = clientesRepository.existsByNome("outro");
             System.out.println("Existe um cliente  com o nome Mateus?" + existe);
 
 
