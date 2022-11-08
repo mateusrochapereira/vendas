@@ -13,7 +13,7 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
+    //só pra garantir a brunch
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
