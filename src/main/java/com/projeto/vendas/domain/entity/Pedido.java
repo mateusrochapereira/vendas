@@ -3,7 +3,7 @@ package com.projeto.vendas.domain.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
+import java.util.List;
 
 
 @Entity
@@ -24,6 +24,18 @@ public class Pedido {
     //como vai ser mapeado com o precision o numero 10000.00
     @Column(name = "total", length = 20, precision = 2)
     private BigDecimal total;
+
+    //quando nãp há chave na tabela da relação pra essa classe vc usa o mappedby
+    @OneToMany(mappedBy = "pedido")
+    private List<ItemPedido> itens;
+
+    public List<ItemPedido> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ItemPedido> itens) {
+        this.itens = itens;
+    }
 
     public Integer getId() {
         return id;
