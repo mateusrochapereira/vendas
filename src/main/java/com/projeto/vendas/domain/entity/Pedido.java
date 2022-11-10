@@ -22,7 +22,7 @@ public class Pedido {
     private LocalDate dataPedido;
 
     //como vai ser mapeado com o precision o numero 10000.00
-    @Column(name = "total", length = 20, precision = 2)
+    @Column(name = "total",  precision = 20, scale = 2)
     private BigDecimal total;
 
     //quando nãp há chave na tabela da relação pra essa classe vc usa o mappedby
@@ -67,5 +67,14 @@ public class Pedido {
 
     public void setTotal(BigDecimal total) {
         this.total = total;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "id=" + id +
+                ", dataPedido=" + dataPedido +
+                ", total=" + total +
+                '}';
     }
 }

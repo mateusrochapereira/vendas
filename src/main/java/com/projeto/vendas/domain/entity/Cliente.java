@@ -16,8 +16,8 @@ public class Cliente {
 
     @Column(name = "nome", length =  100)
     private String nome;
-
-    @OneToMany(mappedBy = "cliente")
+    //fetch lazy é pra nao trazer uma lista de pedidos quando obter um cliente
+    @OneToMany(mappedBy = "cliente",fetch = FetchType.LAZY )
     private Set<Pedido> pedidos;
 
     public Set<Pedido> getPedidos() {
