@@ -2,10 +2,13 @@ package com.projeto.vendas.rest.controller;
 
 import com.projeto.vendas.domain.entity.Cliente;
 import com.projeto.vendas.domain.repository.ClientesRepository;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -62,6 +65,20 @@ public class ClienteController {
                     clientesRepository.save(cliente);
                     return ResponseEntity.noContent().build();
                 }).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+   @GetMapping("/api/listarClientes")
+    @ResponseBody
+    public ResponseEntity find(Cliente filtro){
+       ExampleMatcher matcher = ExampleMatcher
+                                        .matching()
+                                        .withIgnoreCase()
+                                         .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+       Example example = Example.of(filtro, matcher);
+       List<Cliente> lista = clientesRepository.findAll(example);
+
+       return ResponseEntity.ok(lista);
+
     }
 }
 

@@ -18,6 +18,10 @@ public class Cliente {
 
     @Column(name = "nome", length =  100)
     private String nome;
+
+    @Column(name = "cpf", length = 11)
+    private String cpf;
+
     //fetch lazy é pra nao trazer uma lista de pedidos quando obter um cliente
     @JsonIgnore   //para o json ignorar e essa propriedade nao vir quando busacr um cliente
     @OneToMany(mappedBy = "cliente",fetch = FetchType.LAZY )
@@ -57,6 +61,14 @@ public class Cliente {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     @Override
