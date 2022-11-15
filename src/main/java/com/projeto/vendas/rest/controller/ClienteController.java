@@ -20,17 +20,22 @@ public class ClienteController {
 
     @GetMapping("/api/clientes/{id}")
     @ResponseBody
-    public ResponseEntity getClienteById(@PathVariable Integer id){
+    public ResponseEntity getClienteById(@PathVariable Integer id) {
         Optional<Cliente> cliente = clientesRepository.findById(id);
 
-        if(cliente.isPresent()){
-            return  ResponseEntity.ok(cliente.get());
+        if (cliente.isPresent()) {
+            return ResponseEntity.ok(cliente.get());
         }
-            return ResponseEntity.notFound().build();
-
-
+        return ResponseEntity.notFound().build();
     }
 
+    @PostMapping("/api/salvarCliente")
+    @ResponseBody
+        public ResponseEntity save(@RequestBody  Cliente cliente){
 
+        Cliente clienteSalvo = clientesRepository.save(cliente);
+        return ResponseEntity.ok(clienteSalvo);
+
+    }
 
 }

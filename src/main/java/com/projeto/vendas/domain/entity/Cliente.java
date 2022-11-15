@@ -1,6 +1,8 @@
 package com.projeto.vendas.domain.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -17,6 +19,7 @@ public class Cliente {
     @Column(name = "nome", length =  100)
     private String nome;
     //fetch lazy é pra nao trazer uma lista de pedidos quando obter um cliente
+    @JsonIgnore   //para o json ignorar e essa propriedade nao vir quando busacr um cliente
     @OneToMany(mappedBy = "cliente",fetch = FetchType.LAZY )
     private Set<Pedido> pedidos;
 
