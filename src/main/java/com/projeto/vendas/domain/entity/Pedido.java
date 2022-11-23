@@ -1,5 +1,6 @@
 package com.projeto.vendas.domain.entity;
 
+import com.projeto.vendas.service.PedidoService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
