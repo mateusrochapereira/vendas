@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 public class PedidoDTO {
 
-    private Integer clienteId;
+    private Integer cliente;
     private BigDecimal total;
     private List<ItemPedidoDTO> itens;
 
