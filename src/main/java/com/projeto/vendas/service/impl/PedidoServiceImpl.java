@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,6 +51,12 @@ public class PedidoServiceImpl implements PedidoService {
         pedido.setItens(itemsPedidos);
         return pedido;
     }
+
+    @Override
+    public Optional<Pedido> obterPedidoCompleto(Integer id) {
+        return pedidoRepository.findByIdFetchItens(id);
+    }
+
 
     private List<ItemPedido> conveterItems(Pedido pedido, List<ItemPedidoDTO> items) {
         if (items.isEmpty()) {
