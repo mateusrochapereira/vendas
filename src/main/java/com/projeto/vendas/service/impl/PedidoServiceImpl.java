@@ -4,6 +4,7 @@ import com.projeto.vendas.domain.entity.Cliente;
 import com.projeto.vendas.domain.entity.ItemPedido;
 import com.projeto.vendas.domain.entity.Pedido;
 import com.projeto.vendas.domain.entity.Produto;
+import com.projeto.vendas.domain.enums.StatusPedido;
 import com.projeto.vendas.domain.repository.ClientesRepository;
 import com.projeto.vendas.domain.repository.ItensPedidoRepository;
 import com.projeto.vendas.domain.repository.PedidoRepository;
@@ -43,6 +44,7 @@ public class PedidoServiceImpl implements PedidoService {
         pedido.setTotal(dto.getTotal());
         pedido.setDataPedido(LocalDate.now());
         pedido.setCliente(cliente);
+        pedido.setStatus(StatusPedido.REALIZADO);
 
          List<ItemPedido> itemsPedidos = conveterItems(pedido, dto.getItens());
         pedidoRepository.save(pedido);

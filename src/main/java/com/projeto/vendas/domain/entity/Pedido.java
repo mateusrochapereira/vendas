@@ -1,5 +1,6 @@
 package com.projeto.vendas.domain.entity;
 
+import com.projeto.vendas.domain.enums.StatusPedido;
 import com.projeto.vendas.service.PedidoService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,6 +34,10 @@ public class Pedido {
     //como vai ser mapeado com o precision o numero 10000.00
     @Column(name = "total", precision = 20, scale = 2)
     private BigDecimal total;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private StatusPedido status;
 
     //quando nãp há chave na tabela da relação pra essa classe vc usa o mappedby
     @OneToMany(mappedBy = "pedido")
