@@ -2,6 +2,8 @@ package com.projeto.vendas.rest.controller;
 
 import com.projeto.vendas.domain.entity.ItemPedido;
 import com.projeto.vendas.domain.entity.Pedido;
+import com.projeto.vendas.domain.enums.StatusPedido;
+import com.projeto.vendas.rest.dto.AtualizacaoStatusPedidoDTO;
 import com.projeto.vendas.rest.dto.InformacaoItemPedidoDTO;
 import com.projeto.vendas.rest.dto.InformacoesPedidoDTO;
 import com.projeto.vendas.rest.dto.PedidoDTO;
@@ -46,6 +48,16 @@ public class PedidoController {
                 .orElseThrow( () ->
                         new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontraddo"));
     }
+    @PatchMapping({"{id}"})
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateStatus(@PathVariable Integer id,
+                             @RequestBody AtualizacaoStatusPedidoDTO dto) {
+
+        String novoStatus = dto.getNovoStatus();
+
+        service.atualizaStatus(id, StatusPedido.valueOf(novoStatus));
+    }
+
     private InformacoesPedidoDTO converter(Pedido pedido){
       return   InformacoesPedidoDTO
                 .builder()
