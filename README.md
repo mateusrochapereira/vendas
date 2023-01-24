@@ -1,6 +1,6 @@
 # Vendas
 
-Este projeto tem o intuito de  desenvolver um sistema de vendas, onde um cliente pode fazer um pedido de um produto.
+Este projeto tem o intuito de  desenvolver um sistema de vendas, onde um cliente pode fazer pedidos de uma lista  de produtos.
 
 
 
