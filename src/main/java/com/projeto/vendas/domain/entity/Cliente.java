@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -27,7 +28,9 @@ public class Cliente {
     @NotEmpty(message = "Campo nome é obrigatório.")
     private String nome;
 
+    @NotEmpty(message = "Campo cpf é obrigatório.")
     @Column(name = "cpf", length = 11)
+    @CPF(message = "Informe um cpf válido")
     private String cpf;
 
     //fetch lazy é pra nao trazer uma lista de pedidos quando obter um cliente
