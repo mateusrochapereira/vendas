@@ -25,12 +25,12 @@ public class Cliente {
     private Integer id;
 
     @Column(name = "nome", length =  100)
-    @NotEmpty(message = "Campo nome é obrigatório.")
+    @NotEmpty(message = "{campo.nome.obrigatorio}")
     private String nome;
 
-    @NotEmpty(message = "Campo cpf é obrigatório.")
+    @NotEmpty(message = "{campo.cpf.obrigatorio}")
     @Column(name = "cpf", length = 11)
-    @CPF(message = "Informe um cpf válido")
+    @CPF(message = "{campo.cpf.invalido}")
     private String cpf;
 
     //fetch lazy é pra nao trazer uma lista de pedidos quando obter um cliente
