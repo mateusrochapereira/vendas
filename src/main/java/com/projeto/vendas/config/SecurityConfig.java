@@ -31,16 +31,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/api/clientes/clientePorId/**")
+                    .antMatchers("/api/clientes/salvarCliente")
                          .hasAnyRole("USER", "ADMIN")
-                    .antMatchers("/api/pedidos/**")
+                    .antMatchers("/api/pedidos/fazerPedido")
                         .hasAnyRole("USER", "ADMIN")
-                    .antMatchers("/api/produtos/**")
+                    .antMatchers("/api/produtos/SalvarProduto")
                          .hasRole("ADMIN")
 
                 .and()
                 //.formLogin("/meulogin.html");
-                .formLogin();
+                .httpBasic();
 
     }
 
