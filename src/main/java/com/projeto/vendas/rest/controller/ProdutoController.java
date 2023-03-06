@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/produto")
+@RequestMapping("/api/produtos/")
 public class ProdutoController {
     private ProdutosRepository produtoRepository;
 
@@ -22,21 +22,21 @@ public class ProdutoController {
         this.produtoRepository = produtosRepository;
     }
 
-    @GetMapping("/buscarProdutoPorId/{id}")
+    @GetMapping("buscarProdutoPorId/{id}")
     public Produto getIdProduto(@PathVariable Integer id) {
         return produtoRepository.findById(id)
                 .orElseThrow(() ->
                         new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto nao encontrado"));
     }
 
-    @PostMapping("/salvarProduto")
+    @PostMapping("salvarProduto")
     @ResponseStatus(HttpStatus.CREATED)
     public Produto saveProduto(@RequestBody @Valid Produto produto) {
         return produtoRepository.save(produto);
 
     }
 
-    @DeleteMapping("/deletarProduto/{id}")
+    @DeleteMapping("deletarProduto/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public  void deleteProduto(@PathVariable Integer id){
         produtoRepository.findById(id)

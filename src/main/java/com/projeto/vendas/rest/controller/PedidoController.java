@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/pedidos")
+@RequestMapping("/api/pedidos/")
 public class PedidoController {
 
 
@@ -31,7 +31,7 @@ public class PedidoController {
         this.service = service;
     }
 
-    @PostMapping("/fazerPedido")
+    @PostMapping("fazerPedido")
     @ResponseStatus(HttpStatus.CREATED)
     public Integer savePedido(@RequestBody @Valid PedidoDTO dto){
         Pedido pedido = (Pedido) service.salvar(dto);

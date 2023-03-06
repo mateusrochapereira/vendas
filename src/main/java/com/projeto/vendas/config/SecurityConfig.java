@@ -12,8 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
-      return  new BCryptPasswordEncoder();
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Override
@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder())
                 .withUser("fulano")
                 .password(passwordEncoder().encode("123"))
-                .roles("USER");
+                .roles("USER", "ADMIN");
     }
 
     @Override
@@ -31,11 +31,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                     .antMatchers("url:/api/clientes/**")
-                        .authenticated()
+                    .antMatchers("/api/clientes/clientePorId/**")
+                         .hasAnyRole("USER", "ADMIN")
+                    .antMatchers("/api/pedidos/**")
+                        .hasAnyRole("USER", "ADMIN")
+                    .antMatchers("/api/produtos/**")
+                         .hasRole("ADMIN")
 
                 .and()
-                                        //.formLogin("/meulogin.html");
+                //.formLogin("/meulogin.html");
                 .formLogin();
 
     }
