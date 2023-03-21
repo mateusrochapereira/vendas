@@ -2,6 +2,7 @@ package com.projeto.vendas.service.impl;
 
 import com.projeto.vendas.domain.entity.Usuario;
 import com.projeto.vendas.domain.repository.UsuarioRepository;
+import com.projeto.vendas.exception.SenhaInvalidarExcePtion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,6 +24,14 @@ public class UsuarioServiceImpl  implements UserDetailsService {
         return usuarioRepository.save(usuario);
     }
 
+    public UserDetails autenticar(Usuario usuario){
+        UserDetails user = loadUserByUsername(usuario.getLogin());
+       boolean senhaasBatem = encoder.matches(usuario.getSenha(), user.getPassword());
+       if(senhaasBatem ){
+           return user;
+       }
+        throw new SenhaInvalidarExcePtion();
+    }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     Usuario usuario = usuarioRepository.findByLogin(username)
