@@ -1,5 +1,7 @@
-package com.projeto.vendas;
+package com.projeto.vendas.security.jwt;
 
+
+import com.projeto.vendas.VendasApplication;
 import com.projeto.vendas.domain.entity.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
